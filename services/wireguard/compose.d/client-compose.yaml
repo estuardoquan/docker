@@ -1,6 +1,9 @@
 networks:
     local:
         driver: bridge
+volumes:
+    config:
+        driver: local
 services:
     client:
         extends:
