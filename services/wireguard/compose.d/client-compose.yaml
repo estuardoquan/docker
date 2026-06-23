@@ -7,7 +7,7 @@ services:
             file: $TEMPLATE_WG_CLIENT
             service: client
         volumes:
-            - config:/config/wg_confs/
+            - /etc/wireguard:/config/wg_confs/
         networks:
             - local
         ports:
