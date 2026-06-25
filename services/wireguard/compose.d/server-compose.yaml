@@ -5,7 +5,7 @@ volumes:
     config:
         driver: local
 services:
-    vpn:
+    server:
         extends:
             file: $TEMPLATE_WG_SERVER
             service: server
