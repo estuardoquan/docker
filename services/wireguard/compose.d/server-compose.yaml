@@ -1,16 +1,23 @@
 networks:
-    local:
-        driver: bridge
+    ipvlan16:
+        external: true
+        name: ipvlan16
 volumes:
     config:
         driver: local
+        driver_opts:
+            type: nfs
+            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NAS_WG_CONFIG"
 services:
-    vpn:
+    server:
         extends:
             file: $TEMPLATE_WG_SERVER
             service: server
         volumes:
             - config:/config
         networks:
-            - local
+            ipvlan16:
+                ipv4_address: $WG_SERVER_IPVLAN16_ADDRESS
         restart: unless-stopped
+      
