@@ -1,13 +1,13 @@
 AUTHOR=dqio
-IMAGE=socks5
+IMAGE=tor
 
 TAG=${AUTHOR}/${IMAGE}
 
 all:
 
-docker-build: docker-build-socks5
+docker-build: docker-build-tor
 
-docker-build-socks5:
+docker-build-tor:
 	docker build -t ${TAG}:latest ./
 
 

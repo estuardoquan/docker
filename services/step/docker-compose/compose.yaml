@@ -1,11 +1,22 @@
 networks:
     local:
         driver: bridge
+    ipvlan15:
+        external: true
+        name: ipvlan15
 volumes:
     ca:
         driver: local
+        driver_opts:
+            type: nfs
+            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NAS_STEP_CA"
     crt_jwt:
         driver: local
+        driver_opts:
+            type: nfs
+            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NAS_STEP_CRTJWT"
 secrets:
     provisioner_password:
         file: $STEP_PROVISIONER_PASSWORD_FILE
@@ -15,9 +26,11 @@ services:
             file: $TEMPLATE_STEP_CA
             service: ca
         volumes:
-            - ca:$CA_STEPPATH
+            - ca:$STEP_CA_STEPPATH
         networks:
-            - local
+            local: {}
+            ipvlan15:
+                ipv4_address: $STEP_CA_IPVLAN15_ADDRESS
         restart: unless-stopped
     crt:
         extends:
