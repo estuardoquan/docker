@@ -1,31 +1,61 @@
 networks:
     local:
         driver: bridge
+    ipvlan31:
+        external: true
+        name: ipvlan31
 volumes:
-    mongo:
-        drvier: local
+    crt:
+        external: true
+        name: step_crt_jwt
     config:
         driver: local
+        driver_opts:
+            type: nfs
+            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NAS_UNIFI_CONFIG"
+    db:
+        driver: local
+        driver_opts:
+            type: nfs
+            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NAS_UNIFI_DB"
 services:
-    mongo:
+    db:
         extends:
             file: $TEMPLATE_UNIFI_MONGO
             service: mongo
         volumes:
-            - mongo:/data/db
+            - db:/data/db
             - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
         networks:
             - local
+        user: $UNIFI_MONGO_PUID_PGID
         restart: unless-stopped
     console:
         extends:
             file: $TEMPLATE_UNIFI_CONSOLE
             service: console
         networks:
-            - local
+            local: {}
+            ipvlan31:
+                ipv4_address: $UNIFI_CONSOLE_IPVLAN31_ADDRESS       
         volumes:
-            - src:/config
+            - config:/config
         depends_on:
-            - mongo
+            - db 
+        restart: unless-stopped
+    nginx:
+        extends:
+            file: $TEMPLATE_NGINX_SERVER
+            service: server
+        volumes:
+            - crt:$NGINX_SERVER_WATCH_CRT:ro
+            - ./servers.yaml:$NGINX_SERVER_YAML
+        networks:
+            ipvlan31:
+                ipv4_address: $NGINX_SERVER_IPVLAN31_ADDRESS
+        depends_on:
+            - console
         restart: unless-stopped
 
