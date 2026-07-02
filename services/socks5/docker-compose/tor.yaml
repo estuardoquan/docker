@@ -1,11 +1,13 @@
 networks:
-    local:
-        driver: local 
+    ipvlan16:
+        external: true
+        name: ipvlan16
 services:
     tor:
         extends:
             file: $TEMPLATE_SOCKS5_TOR
             service: tor
         networks:
-            - local
+            ipvlan16:
+                ipv4_address: $SOCKS5_TOR_IPVLAN16_ADDRESS
         restart: unless-stopped
