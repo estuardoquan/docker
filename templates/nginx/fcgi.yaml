@@ -1,0 +1,7 @@
+services:
+   fcgi:
+        image: dqio/servers:latest
+        environment:
+            SERVER_YAML: $FCGI_SERVER_YAML
+            SERVER_WATCH_CRT: $FCGI_SERVER_WATCH_CRT
+

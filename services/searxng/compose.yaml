@@ -1,0 +1,65 @@
+networks:
+    local:
+        driver: bridge
+    ipvlan16:
+        external: true
+        name: ipvlan16
+volumes:
+    crt:
+        external: true
+        name: step_crt_jwt
+    config:
+        driver: local
+        driver_opts:
+            type: nfs
+            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NAS_SEARXNG_CONFIG"
+    data:
+        driver: local
+        driver_opts:
+            type: nfs
+            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NAS_SEARXNG_DATA"
+    valkey:
+        driver: local
+        driver_opts:
+            type: nfs
+            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NAS_SEARXNG_VALKEY"
+services:
+    core:
+        extends:
+            file: $TEMPLATE_SEARXNG_CORE
+            service: core
+        volumes:
+            - config:/etc/searxng:Z
+            - data:/var/cache/searxng
+        networks:
+            local: {}
+        restart: unless-stopped
+    valkey:
+        extends:
+            file: $TEMPLATE_DB_VALKEY
+            service: valkey
+        volumes:
+            - valkey:/data
+        networks:
+            local: {}
+        depends_on:
+            - core
+        command: valkey-server --save 30 1 --loglevel warning
+        restart: unless-stopped
+    nginx:
+        extends:
+            file: $TEMPLATE_NGINX_SERVER
+            service: server
+        volumes:
+            - crt:$NGINX_SERVER_WATCH_CRT:ro
+            - ./servers.yaml:$NGINX_SERVER_YAML
+        networks:
+            local: {}
+            ipvlan16:
+                ipv4_address: $NGINX_SERVER_IPVLAN16_ADDRESS
+        depends_on:
+            - core 
+        restart: unless-stopped

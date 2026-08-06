@@ -1,0 +1,3 @@
+services:
+    core:
+        image: docker.io/searxng/searxng:latest

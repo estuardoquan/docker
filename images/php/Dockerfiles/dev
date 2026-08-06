@@ -1,6 +1,6 @@
 FROM dqio/php:latest
 
-ADD ./tmp/root_ca.crt /usr/local/share/ca-certificates/root_ca.crt
+ADD ./tmp/roots.pem /usr/local/share/ca-certificates/roots.pem
 
 USER root
 

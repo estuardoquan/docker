@@ -1,0 +1,4 @@
+services:
+    valkey:
+        image: docker.io/valkey/valkey:9-alpine
+

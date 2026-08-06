@@ -1,0 +1,5 @@
+services:
+    phpfpm:
+        image: dqio/php:latest
+    phpfpm-dev:
+        image: dqio/php:dev

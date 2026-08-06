@@ -1,0 +1,7 @@
+services:
+    ws: 
+        image: dqio/node:latest
+        environment:
+            WS_CRT: $NODE_WS_CRT
+            WS_REDIS_HOST: $NODE_WS_REDIS_HOST
+
