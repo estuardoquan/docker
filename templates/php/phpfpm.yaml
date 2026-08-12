@@ -1,5 +1,5 @@
 services:
     phpfpm:
-        image: dqio/php:latest
-    phpfpm-dev:
-        image: dqio/php:dev
+        image: estuardoquan/phpfpm:alpine
+    php:
+        image: estuardoquan/phpfpm:alpine

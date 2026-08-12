@@ -1,9 +1,9 @@
 networks:
     local:
         driver: bridge
-    ipvlan15:
+    10_vlan:
         external: true
-        name: ipvlan15
+        name: 10_vlan
 volumes:
     ca:
         driver: local
@@ -29,8 +29,8 @@ services:
             - ca:$STEP_CA_STEPPATH
         networks:
             local: {}
-            ipvlan15:
-                ipv4_address: $STEP_CA_IPVLAN15_ADDRESS
+            10_vlan:
+                ipv4_address: $STEP_CA_10VLAN_ADDRESS
         restart: unless-stopped
     crt:
         extends:

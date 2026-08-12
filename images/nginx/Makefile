@@ -1,5 +1,5 @@
-AUTHOR=dqio
-IMAGE=servers
+AUTHOR=estuardoquan
+IMAGE=nginx
 
 TAG=${AUTHOR}/${IMAGE}
 
@@ -11,4 +11,4 @@ docker-build-camarero:
 	docker build -t ${TAG}:build  --target camarero ./
 
 docker-build-server:
-	docker build -t ${TAG}:latest  --target server ./
+	docker build -t ${TAG}:alpine  --target server ./

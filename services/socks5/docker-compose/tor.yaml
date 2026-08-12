@@ -1,13 +1,13 @@
 networks:
-    ipvlan16:
+    20_vlan:
         external: true
-        name: ipvlan16
+        name: 20_vlan 
 services:
     tor:
         extends:
             file: $TEMPLATE_SOCKS5_TOR
             service: tor
         networks:
-            ipvlan16:
-                ipv4_address: $SOCKS5_TOR_IPVLAN16_ADDRESS
+            20_vlan:
+                ipv4_address: $SOCKS5_TOR_20VLAN_ADDRESS
         restart: unless-stopped

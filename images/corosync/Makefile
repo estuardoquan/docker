@@ -1,4 +1,4 @@
-AUTHOR=dqio
+AUTHOR=estuardoquan
 IMAGE=corosync
 
 TAG=${AUTHOR}/${IMAGE}
@@ -6,4 +6,4 @@ TAG=${AUTHOR}/${IMAGE}
 all: docker-build
 
 docker-build:
-	docker build -t ${TAG}:latest ./
+	docker build -t ${TAG}:fedora ./

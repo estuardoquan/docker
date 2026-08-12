@@ -1,6 +1,6 @@
 services:
    server:
-        image: dqio/servers:latest
+        image: estuardoquan/nginx:alpine
         environment:
             SERVER_YAML: $NGINX_SERVER_YAML
             SERVER_WATCH_CRT: $NGINX_SERVER_WATCH_CRT

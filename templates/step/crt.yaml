@@ -1,6 +1,6 @@
 services:
     crt:
-        image: dqio/crtpatch:latest
+        image: estuardoquan/step-renew:alpine
         environment:
             STEP_INIT_NAME: $STEP_CRT_STEP_INIT_NAME
             STEP_INIT_DNS: $STEP_CRT_STEP_INIT_DNS

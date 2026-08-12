@@ -1,6 +1,6 @@
 services:
     minio:
-        image: dqio/minio:latest
+        image: estuardoquan/minio:alpine
         environment:
             MINIO_ROOT_USER: $STORAGE_MINIO_ROOT_USER
             MINIO_ROOT_PASSWORD: $STORAGE_MINIO_ROOT_PASSWORD

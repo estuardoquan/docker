@@ -1,6 +1,6 @@
 services:
     route53:
-        image: dqio/certbot-route53:latest
+        image: estuardoquan/certbot-route53:alpine
         environment:
             AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
             AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY

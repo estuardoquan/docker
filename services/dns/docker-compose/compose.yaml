@@ -1,10 +1,12 @@
 networks:
-    ipvlan15:
+    local:
+        driver: bridge
+    20_vlan:
         external: true
-        name: ipvlan15
-    ipvlan16:
+        name: 20_vlan
+    10_vlan:
         external: true
-        name: ipvlan16
+        name: 10_vlan
 volumes:
     crt:
         external: true
@@ -43,10 +45,9 @@ services:
             - bind9_cache:/var/cache/bind
             - bind9_lib:/var/lib/bind
         networks:
-            ipvlan15:
-                ipv4_address: $DNS_BIND9_IPVLAN15_ADDRESS
-            ipvlan16:
-                ipv4_address: $DNS_BIND9_IPVLAN16_ADDRESS
+            local: {}
+            10_vlan:
+                ipv4_address: $DNS_BIND9_10VLAN_ADDRESS
         restart: unless-stopped
     pihole:
         extends:
@@ -55,8 +56,9 @@ services:
         volumes:
             - pihole:/etc/pihole
         networks:
-            ipvlan16:
-                ipv4_address: $DNS_PIHOLE_IPVLAN16_ADDRESS
+            local: {}
+            20_vlan:
+                ipv4_address: $DNS_PIHOLE_20VLAN_ADDRESS
         depends_on:
             - bind9
         restart: unless-stopped
@@ -68,8 +70,8 @@ services:
             - crt:$NGINX_SERVER_WATCH_CRT:ro
             - ./servers.yaml:$NGINX_SERVER_YAML
         networks:
-            ipvlan16:
-                ipv4_address: $NGINX_SERVER_IPVLAN16_ADDRESS
+            20_vlan:
+                ipv4_address: $NGINX_SERVER_20VLAN_ADDRESS
         depends_on:
             - pihole
         restart: unless-stopped

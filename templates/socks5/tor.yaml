@@ -1,4 +1,4 @@
 services:
     tor:
-        image: dqio/tor:latest
+        image: estuardoquan/tor:alpine
 

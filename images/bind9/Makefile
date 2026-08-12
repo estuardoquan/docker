@@ -1,4 +1,4 @@
-AUTHOR=dqio
+AUTHOR=estuardoquan
 IMAGE=bind9
 
 TAG=${AUTHOR}/${IMAGE}

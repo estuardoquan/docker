@@ -1,6 +1,6 @@
 services:
     noip:
-        image: dqio/noip:latest
+        image: estuardoquan/noip:alpine
         environment:
             NOIP_HOSTNAMES: $DDNS_NOIP_HOSTNAMES
             NOIP_PASSWORD: $DDNS_NOIP_PASSWORD

@@ -1,9 +1,9 @@
 networks:
     local:
         driver: bridge
-    ipvlan31:
+    10_vlan:
         external: true
-        name: ipvlan31
+        name: 10_vlan
 volumes:
     crt:
         external: true
@@ -38,8 +38,8 @@ services:
             service: console
         networks:
             local: {}
-            ipvlan31:
-                ipv4_address: $UNIFI_CONSOLE_IPVLAN31_ADDRESS       
+            10_vlan:
+                ipv4_address: $UNIFI_CONSOLE_10VLAN_ADDRESS       
         volumes:
             - config:/config
         depends_on:
@@ -53,8 +53,8 @@ services:
             - crt:$NGINX_SERVER_WATCH_CRT:ro
             - ./servers.yaml:$NGINX_SERVER_YAML
         networks:
-            ipvlan31:
-                ipv4_address: $NGINX_SERVER_IPVLAN31_ADDRESS
+            10_vlan:
+                ipv4_address: $NGINX_SERVER_10VLAN_ADDRESS
         depends_on:
             - console
         restart: unless-stopped

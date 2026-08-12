@@ -1,7 +1,7 @@
 networks:
-    ipvlan16:
+    20_vlan:
         external: true
-        name: ipvlan16
+        name: 20_vlan
 volumes:
     config:
         driver: local
@@ -17,7 +17,7 @@ services:
         volumes:
             - config:/config
         networks:
-            ipvlan16:
-                ipv4_address: $WG_SERVER_IPVLAN16_ADDRESS
+            20_vlan:
+                ipv4_address: $WG_SERVER_20VLAN_ADDRESS
         restart: unless-stopped
       

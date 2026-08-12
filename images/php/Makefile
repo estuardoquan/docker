@@ -1,5 +1,5 @@
-AUTHOR=dqio
-IMAGE=php
+AUTHOR=estuardoquan
+IMAGE=phpfpm
 
 TAG=${AUTHOR}/${IMAGE}
 
@@ -8,8 +8,8 @@ all: docker-build
 docker-build: docker-build-php-fpm docker-build-php-dev
 
 docker-build-php-fpm:
-	docker build -t ${TAG}:latest -f Dockerfiles/main .
+	docker build -t ${TAG}:alpine -f Dockerfiles/main .
 
 docker-build-php-dev:
-	docker build -t ${TAG}:dev -f Dockerfiles/dev .
+	docker build -t ${TAG}:latest -f Dockerfiles/dev .
 

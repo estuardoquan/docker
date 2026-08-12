@@ -1,6 +1,6 @@
 services:
     vite: 
-        image: dqio/node:latest
+        image: estuardoquan/node:alpine
         environment:
             VITECONFIG_HMR_HOST: $APP_VITECONFIG_HMR_HOST
             VITECONFIG_HMR_CLIENTPORT: 443

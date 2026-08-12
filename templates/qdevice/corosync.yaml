@@ -1,5 +1,5 @@
 services:
     corosync:
-        image: dqio/corosync:latest
+        image: estuardoquan/corosync:fedora
         # environment:
 
