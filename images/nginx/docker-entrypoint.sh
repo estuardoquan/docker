@@ -118,6 +118,10 @@ function init(){
 }
 
 if [[ -n "${SERVER_WATCH_CRT}" ]]; then
+    if [[ -d "${SERVER_WATCH_CRT}" ]]; then
+        SERVER_WATCH_CRT=${SERVER_WATCH_CRT}/site.crt
+    fi
+    
     if [[ ! -f "${SERVER_WATCH_CRT}" ]]; then
         sleep 10 
     fi

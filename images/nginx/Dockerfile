@@ -32,7 +32,7 @@ RUN apk update && \
     libgcc \
     libstdc++ \  
     inotify-tools && \
-    chmod +x /docker-entrypoint.sh 
+    chmod +x /usr/local/bin/certwatch.sh /docker-entrypoint.sh 
     # update-ca-certificates
 
 ENTRYPOINT ["/docker-entrypoint.sh"]

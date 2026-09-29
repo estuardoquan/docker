@@ -2,7 +2,7 @@ services:
     vite: 
         image: estuardoquan/node:alpine
         environment:
-            VITECONFIG_HMR_HOST: $APP_VITECONFIG_HMR_HOST
-            VITECONFIG_HMR_CLIENTPORT: 443
-            VITECONFIG_STEPPATH: /var/local/step
+            VCONF_HMR_HOST: $VITE_VCONF_HMR_HOST
+            VCONF_HMR_CLIENTPORT: $VITE_VCONF_HMR_CLIENT_PORT
+            VCONF_HTTPS_PATH: $VITE_VCONF_HTTPS_PATH
 

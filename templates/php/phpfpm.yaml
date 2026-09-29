@@ -2,4 +2,4 @@ services:
     phpfpm:
         image: estuardoquan/phpfpm:alpine
     php:
-        image: estuardoquan/phpfpm:alpine
+        image: estuardoquan/phpfpm:latest
