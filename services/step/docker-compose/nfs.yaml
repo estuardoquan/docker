@@ -1,0 +1,12 @@
+volumes:
+    ca:
+        driver_opts:
+            type: nfs
+            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NAS_STEP_CA"
+    crt_jwt:
+        driver_opts:
+            type: nfs
+            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NAS_STEP_CRTJWT"
+

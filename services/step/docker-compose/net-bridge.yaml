@@ -1,0 +1,11 @@
+networks:
+    local:
+        driver: bridge
+services:
+    ca:
+        networks:
+            local: {}
+    crt:
+        networks:
+            local: {}
+

@@ -1,25 +1,11 @@
-networks:
-    local:
-        driver: bridge
-    10_vlan:
-        external: true
-        name: 10_vlan
 volumes:
     crt:
         external: true
         name: step_crt_jwt
     config:
         driver: local
-        driver_opts:
-            type: nfs
-            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
-            device: "$NAS_UNIFI_CONFIG"
     db:
         driver: local
-        driver_opts:
-            type: nfs
-            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
-            device: "$NAS_UNIFI_DB"
 services:
     db:
         extends:
@@ -28,18 +14,12 @@ services:
         volumes:
             - db:/data/db
             - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
-        networks:
-            - local
         user: $UNIFI_MONGO_PUID_PGID
         restart: unless-stopped
     console:
         extends:
             file: $TEMPLATE_UNIFI_CONSOLE
             service: console
-        networks:
-            local: {}
-            10_vlan:
-                ipv4_address: $UNIFI_CONSOLE_10VLAN_ADDRESS       
         volumes:
             - config:/config
         depends_on:
@@ -52,9 +32,6 @@ services:
         volumes:
             - crt:$NGINX_SERVER_WATCH_CRT:ro
             - ./servers.yaml:$NGINX_SERVER_YAML
-        networks:
-            10_vlan:
-                ipv4_address: $NGINX_SERVER_10VLAN_ADDRESS
         depends_on:
             - console
         restart: unless-stopped

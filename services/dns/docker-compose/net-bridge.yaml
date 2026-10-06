@@ -1,0 +1,17 @@
+networks:
+    local:
+        driver: bridge
+    proxy:
+        driver: bridge
+services:
+    bind9:
+        networks:
+            local: {}
+    pihole:
+        networks:
+            local: {}
+            proxy: {}
+    nginx:
+        networks:
+            proxy: {}
+

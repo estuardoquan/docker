@@ -1,0 +1,20 @@
+networks:
+    local:
+        driver: bridge
+    10_vlan:
+        external: true
+        name: 10_vlan
+services:
+    db:
+        networks:
+            - local
+    console:
+        networks:
+            local: {}
+            10_vlan:
+                ipv4_address: $UNIFI_CONSOLE_10VLAN_ADDRESS       
+    nginx:
+        networks:
+            10_vlan:
+                ipv4_address: $NGINX_SERVER_10VLAN_ADDRESS
+

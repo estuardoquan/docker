@@ -1,0 +1,9 @@
+networks:
+    10_vlan:
+        external: true
+services:
+    corosync:
+        networks:
+            10_vlan:
+                ipv4_address: $COROSYNC_10VLAN_ADDRESS
+

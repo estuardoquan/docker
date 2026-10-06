@@ -1,0 +1,9 @@
+networks:
+    20_vlan:
+        external: true
+        name: 20_vlan 
+services:
+    tor:
+        networks:
+            20_vlan:
+                ipv4_address: $SOCKS5_TOR_20VLAN_ADDRESS

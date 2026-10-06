@@ -1,0 +1,16 @@
+networks:
+    local:
+        driver: bridge
+    10_vlan:
+        external: true
+        name: 10_vlan
+services:
+    ca:
+        networks:
+            local: {}
+            10_vlan:
+                ipv4_address: $STEP_CA_10VLAN_ADDRESS
+    crt:
+        networks:
+            local: {}
+

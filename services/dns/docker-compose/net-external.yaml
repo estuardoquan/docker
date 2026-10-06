@@ -1,0 +1,25 @@
+networks:
+    local:
+        driver: bridge
+    20_vlan:
+        external: true
+        name: 20_vlan
+    10_vlan:
+        external: true
+        name: 10_vlan
+services:
+    bind9:
+        networks:
+            local: {}
+            10_vlan:
+                ipv4_address: $DNS_BIND9_10VLAN_ADDRESS
+    pihole:
+        networks:
+            local: {}
+            20_vlan:
+                ipv4_address: $DNS_PIHOLE_20VLAN_ADDRESS
+    nginx:
+        networks:
+            20_vlan:
+                ipv4_address: $NGINX_SERVER_20VLAN_ADDRESS
+

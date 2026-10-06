@@ -1,22 +1,8 @@
-networks:
-    local:
-        driver: bridge
-    10_vlan:
-        external: true
-        name: 10_vlan
 volumes:
     ca:
         driver: local
-        driver_opts:
-            type: nfs
-            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
-            device: "$NAS_STEP_CA"
     crt_jwt:
         driver: local
-        driver_opts:
-            type: nfs
-            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
-            device: "$NAS_STEP_CRTJWT"
 secrets:
     provisioner_password:
         file: $STEP_PROVISIONER_PASSWORD_FILE
@@ -27,10 +13,6 @@ services:
             service: ca
         volumes:
             - ca:$STEP_CA_STEPPATH
-        networks:
-            local: {}
-            10_vlan:
-                ipv4_address: $STEP_CA_10VLAN_ADDRESS
         restart: unless-stopped
     crt:
         extends:
@@ -38,8 +20,6 @@ services:
             service: crt
         volumes:
             - crt_jwt:/var/local/step
-        networks:
-            - local
         depends_on:
             - ca
         restart: unless-stopped

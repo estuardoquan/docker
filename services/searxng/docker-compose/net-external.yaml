@@ -1,0 +1,18 @@
+networks:
+    local:
+        driver: bridge
+    20_vlan:
+        external: true
+        name: 20_vlan 
+services:
+    core:
+        networks:
+            local: {}
+    valkey:
+        networks:
+            local: {}
+    nginx:
+        networks:
+            local: {}
+            20_vlan:
+                ipv4_address: $NGINX_SERVER_20VLAN_ADDRESS

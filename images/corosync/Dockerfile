@@ -4,17 +4,16 @@ USER root
 
 COPY ./entrypoint.sh /entrypoint.sh
 
-ARG SSH_PASSWD=secret
+# ARG SSH_PASSWD=secret
 
-RUN dnf install -y \
+RUN dnf update -y \
+    && dnf install -y \
         corosync-qnetd \
-        corosync-qdevice \
         openssh-server \
-        passwd \
-    && ssh-keygen -A \
     && mkdir -p /var/run/sshd /var/run/corosync-qnetd \
-    && echo "root:${SSH_PASSWD}" | chpasswd \
-    && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
+    && ssh-keygen -A \
+    # && echo "root:${SSH_PASSWD}" | chpasswd \
+    # && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && chmod +x /entrypoint.sh 
     
 ENTRYPOINT ["/entrypoint.sh"]

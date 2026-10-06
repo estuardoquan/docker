@@ -1,40 +1,15 @@
-networks:
-    local:
-        driver: bridge
-    20_vlan:
-        external: true
-        name: 20_vlan
-    10_vlan:
-        external: true
-        name: 10_vlan
 volumes:
     crt:
         external: true
         name: step_crt_jwt
     bind9_cache:
         driver: local
-        driver_opts:
-            type: nfs
-            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
-            device: $NAS_DNS_BIND9_CACHE
     bind9_lib:
         driver: local
-        driver_opts:
-            type: nfs
-            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
-            device: $NAS_DNS_BIND9_LIB
     bind9_src:
         driver: local
-        driver_opts:
-            type: nfs
-            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
-            device: $NAS_DNS_BIND9_SRC
     pihole:
         driver: local
-        driver_opts:
-            type: nfs
-            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
-            device: $NAS_DNS_PIHOLE
 services:
     bind9:
         extends:
@@ -44,10 +19,6 @@ services:
             - bind9_src:/etc/bind
             - bind9_cache:/var/cache/bind
             - bind9_lib:/var/lib/bind
-        networks:
-            local: {}
-            10_vlan:
-                ipv4_address: $DNS_BIND9_10VLAN_ADDRESS
         restart: unless-stopped
     pihole:
         extends:
@@ -55,10 +26,6 @@ services:
             service: pihole
         volumes:
             - pihole:/etc/pihole
-        networks:
-            local: {}
-            20_vlan:
-                ipv4_address: $DNS_PIHOLE_20VLAN_ADDRESS
         depends_on:
             - bind9
         restart: unless-stopped
@@ -69,9 +36,6 @@ services:
         volumes:
             - crt:$NGINX_SERVER_WATCH_CRT:ro
             - ./servers.yaml:$NGINX_SERVER_YAML
-        networks:
-            20_vlan:
-                ipv4_address: $NGINX_SERVER_20VLAN_ADDRESS
         depends_on:
             - pihole
         restart: unless-stopped

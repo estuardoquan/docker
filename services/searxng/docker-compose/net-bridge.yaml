@@ -1,0 +1,16 @@
+networks:
+    local:
+        driver: bridge
+    proxy:
+        driver: bridge
+services:
+    core:
+        networks:
+            local: {}
+            proxy: {}
+    valkey:
+        networks:
+            local: {}
+    nginx:
+        networks:
+            proxy: {}

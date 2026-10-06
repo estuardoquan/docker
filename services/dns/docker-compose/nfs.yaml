@@ -1,0 +1,22 @@
+volumes:
+    bind9_cache:
+        driver_opts:
+            type: nfs
+            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: $NAS_DNS_BIND9_CACHE
+    bind9_lib:
+        driver_opts:
+            type: nfs
+            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: $NAS_DNS_BIND9_LIB
+    bind9_src:
+        driver_opts:
+            type: nfs
+            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: $NAS_DNS_BIND9_SRC
+    pihole:
+        driver_opts:
+            type: nfs
+            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: $NAS_DNS_PIHOLE
+

@@ -1,0 +1,17 @@
+networks:
+    local:
+        driver: bridge
+    proxy:
+        driver: bridge
+services:
+    db:
+        networks:
+            local: {}
+    console:
+        networks:
+            local: {}
+            proxy: {}
+    nginx:
+        networks:
+            proxy: {}
+

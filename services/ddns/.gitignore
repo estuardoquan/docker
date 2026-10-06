@@ -1,8 +1,0 @@
-# local env files
-.env
-.env.backup
-.env.local
-.env.*.local
-
-# local compose.yaml symlink
-compose.yaml
