@@ -1,0 +1,7 @@
+networks:
+    local:
+        driver: local 
+services:
+    socks5:
+        networks:
+            local: {}

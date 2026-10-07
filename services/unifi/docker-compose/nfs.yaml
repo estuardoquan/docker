@@ -2,11 +2,11 @@ volumes:
     config:
         driver_opts:
             type: nfs
-            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
-            device: "$NAS_UNIFI_CONFIG"
+            o: "addr=$NFS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NFS_UNIFI_CONFIG"
     db:
         driver_opts:
             type: nfs
-            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
-            device: "$NAS_UNIFI_DB"
+            o: "addr=$NFS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NFS_UNIFI_DB"
 

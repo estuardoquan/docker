@@ -7,14 +7,14 @@ networks:
 services:
     db:
         networks:
-            - local
+            local: {}
     console:
         networks:
             local: {}
             10_vlan:
-                ipv4_address: $UNIFI_CONSOLE_10VLAN_ADDRESS       
+                ipv4_address: $UNIFI_CONSOLE_ADDRESS       
     nginx:
         networks:
             10_vlan:
-                ipv4_address: $NGINX_SERVER_10VLAN_ADDRESS
+                ipv4_address: $NGINX_SERVER_ADDRESS
 

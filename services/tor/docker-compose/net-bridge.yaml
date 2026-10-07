@@ -2,6 +2,6 @@ networks:
     local:
         driver: bridge
 services:
-    tor:
+    socks5:
         networks:
             local: {}

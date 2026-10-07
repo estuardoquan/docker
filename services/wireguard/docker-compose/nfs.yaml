@@ -1,0 +1,7 @@
+volumes:
+    config:
+        driver_opts:
+            type: nfs
+            o: "addr=$NFS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NFS_WG_CONFIG"
+     

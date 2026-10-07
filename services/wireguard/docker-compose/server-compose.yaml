@@ -1,14 +1,6 @@
-networks:
-    20_vlan:
-        external: true
-        name: 20_vlan
 volumes:
     config:
         driver: local
-        driver_opts:
-            type: nfs
-            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
-            device: "$NAS_WG_CONFIG"
 services:
     server:
         extends:
@@ -16,8 +8,5 @@ services:
             service: server
         volumes:
             - config:/config
-        networks:
-            20_vlan:
-                ipv4_address: $WG_SERVER_20VLAN_ADDRESS
         restart: unless-stopped
       

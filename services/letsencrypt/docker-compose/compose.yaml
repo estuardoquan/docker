@@ -1,6 +1,3 @@
-networks:
-    local:
-        driver: bridge
 volumes:
     certbot:
         driver: local
@@ -11,6 +8,4 @@ services:
             service: route53
         volumes:
             - certbot:/etc/letsencrypt
-        networks:
-            - local
         restart: unless-stopped

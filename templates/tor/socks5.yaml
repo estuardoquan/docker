@@ -1,4 +1,4 @@
 services:
-    tor:
+    socks5:
         image: estuardoquan/tor:alpine
 

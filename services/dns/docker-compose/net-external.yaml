@@ -12,14 +12,14 @@ services:
         networks:
             local: {}
             10_vlan:
-                ipv4_address: $DNS_BIND9_10VLAN_ADDRESS
+                ipv4_address: $DNS_BIND9_ADDRESS
     pihole:
         networks:
             local: {}
             20_vlan:
-                ipv4_address: $DNS_PIHOLE_20VLAN_ADDRESS
+                ipv4_address: $DNS_PIHOLE_ADDRESS
     nginx:
         networks:
             20_vlan:
-                ipv4_address: $NGINX_SERVER_20VLAN_ADDRESS
+                ipv4_address: $NGINX_SERVER_ADDRESS
 

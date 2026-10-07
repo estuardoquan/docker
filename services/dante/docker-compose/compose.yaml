@@ -1,0 +1,6 @@
+services:
+    socks5:
+        extends:
+            file: $TEMPLATE_DANTE_SOCKS5
+            service: socks5
+        restart: unless-stopped

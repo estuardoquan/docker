@@ -1,6 +1,3 @@
-networks:
-    local:
-        driver: bridge
 services:
     server:
         extends:
@@ -8,7 +5,5 @@ services:
             service: server
         volumes:
             - ./servers.yaml:/etc/nginx/yaml/servers.yaml
-        networks:
-            - local
         restart: unless-stopped
 

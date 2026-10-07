@@ -15,4 +15,4 @@ services:
         networks:
             local: {}
             20_vlan:
-                ipv4_address: $NGINX_SERVER_20VLAN_ADDRESS
+                ipv4_address: $NGINX_SERVER_ADDRESS

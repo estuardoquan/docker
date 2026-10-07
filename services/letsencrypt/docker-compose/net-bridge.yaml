@@ -1,0 +1,7 @@
+networks:
+    local:
+        driver: bridge
+services:
+    certbot:
+        networks:
+            local: {}

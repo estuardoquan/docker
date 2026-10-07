@@ -9,7 +9,7 @@ services:
         networks:
             local: {}
             10_vlan:
-                ipv4_address: $STEP_CA_10VLAN_ADDRESS
+                ipv4_address: $STEP_CA_ADDRESS
     crt:
         networks:
             local: {}

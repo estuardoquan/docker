@@ -1,0 +1,7 @@
+networks:
+    local:
+        driver: bridge
+services:
+    server:
+        networks:
+            local: {}

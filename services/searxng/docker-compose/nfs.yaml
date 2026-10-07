@@ -2,16 +2,16 @@ volumes:
     config:
         driver_opts:
             type: nfs
-            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
-            device: "$NAS_SEARXNG_CONFIG"
+            o: "addr=$NFS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NFS_SEARXNG_CONFIG"
     data:
         driver_opts:
             type: nfs
-            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
-            device: "$NAS_SEARXNG_DATA"
+            o: "addr=$NFS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NFS_SEARXNG_DATA"
     valkey:
         driver_opts:
             type: nfs
-            o: "addr=$NAS_ADDRESS,rw,nolock,soft,nfsvers=4"
-            device: "$NAS_SEARXNG_VALKEY"
+            o: "addr=$NFS_ADDRESS,rw,nolock,soft,nfsvers=4"
+            device: "$NFS_SEARXNG_VALKEY"
 
