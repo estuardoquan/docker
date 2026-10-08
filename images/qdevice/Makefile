@@ -1,5 +1,5 @@
 AUTHOR=estuardoquan
-IMAGE=corosync
+IMAGE=qdevice
 
 TAG=${AUTHOR}/${IMAGE}
 

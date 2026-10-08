@@ -13,7 +13,7 @@ RUN dnf update -y \
     && mkdir -p /var/run/sshd /var/run/corosync-qnetd \
     && ssh-keygen -A \
     # && echo "root:${SSH_PASSWD}" | chpasswd \
-    # && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
+    && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin prohibit-password/' /etc/ssh/sshd_config \
     && chmod +x /entrypoint.sh 
     
 ENTRYPOINT ["/entrypoint.sh"]

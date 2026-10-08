@@ -1,5 +1,0 @@
-services:
-    corosync:
-        image: estuardoquan/corosync:fedora
-        # environment:
-

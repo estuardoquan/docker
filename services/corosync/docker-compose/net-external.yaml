@@ -2,8 +2,8 @@ networks:
     10_vlan:
         external: true
 services:
-    corosync:
+    qdevice:
         networks:
             10_vlan:
-                ipv4_address: $COROSYNC_ADDRESS
+                ipv4_address: $QDEVICE_ADDRESS
 

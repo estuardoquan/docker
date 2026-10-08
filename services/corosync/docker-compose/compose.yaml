@@ -1,0 +1,13 @@
+volumes:
+    qnetd:
+        driver: local
+services:
+    qdevice:
+        extends:
+            file: $TEMPLATE_COROSYNC_QDEVICE
+            service: qdevice 
+        volumes:
+            - qnetd:/etc/corosync/qnetd
+            - ./.ssh:/root/.ssh
+        restart: unless-stopped
+
