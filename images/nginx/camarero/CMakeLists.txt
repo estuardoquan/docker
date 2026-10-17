@@ -2,9 +2,22 @@ cmake_minimum_required(VERSION 3.26.5)
 
 project(camarero)
 
-add_subdirectory(./ext/options)
+include(FetchContent)
 
-add_subdirectory(./ext/yaml-cpp)
+FetchContent_Declare(options
+    GIT_REPOSITORY https://github.com/estuardoquan/libc.git
+    GIT_TAG main
+    GIT_SHALLOW TRUE
+    SOURCE_SUBDIR options
+)
+
+FetchContent_Declare(yaml-cpp
+    GIT_REPOSITORY https://github.com/jbeder/yaml-cpp.git
+    GIT_TAG yaml-cpp-0.9.0
+    GIT_SHALLOW TRUE
+)
+
+FetchContent_MakeAvailable(options yaml-cpp)
 
 add_executable(${PROJECT_NAME}
     ./src/main.cpp
@@ -13,20 +26,13 @@ add_executable(${PROJECT_NAME}
     ./src/server.cpp ./src/server.h
 )
 
-target_include_directories(${PROJECT_NAME} 
+target_include_directories(${PROJECT_NAME}
     PRIVATE
-        ./ext/options
-        ./ext/yaml-cpp
+        ${options_SOURCE_DIR}/options
 )
 
-target_link_directories(${PROJECT_NAME} 
-    PRIVATE 
-        ./ext/options
-        ./ext/yaml-cpp
-)
-
-target_link_libraries(${PROJECT_NAME} 
-    PRIVATE 
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE
         options
         yaml-cpp::yaml-cpp
 )
