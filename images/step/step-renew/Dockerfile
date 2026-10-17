@@ -3,10 +3,10 @@ FROM smallstep/step-cli
 USER root
 
 ENV STEPPATH=/var/local/step
-ENV STEP_ROOT="${STEPPATH}/root_ca.crt"
+
 ENV SITECRT="${STEPPATH}/site.crt"
 ENV SITEKEY="${STEPPATH}/site.key"
-ENV STEP_RENEW_PERIOD="1m"
+ENV STEP_ROOT="${STEPPATH}/root_ca.crt"
 
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 
@@ -22,8 +22,5 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 
 USER step
 
-CMD step ca renew --daemon \
-    --renew-period "${STEP_RENEW_PERIOD}" \
-    "${SITECRT}" \
-    "${SITEKEY}"
+CMD ["step", "ca", "renew", "--daemon"] 
 

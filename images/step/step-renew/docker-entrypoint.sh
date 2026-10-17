@@ -4,9 +4,11 @@
 
 SITECRT="${SITECRT:?ERROR: required SITECRT}"
 SITEKEY="${SITEKEY:?ERROR: required SITEKEY}"
-STEP_ROOT="${STEP_ROOT:?ERROR: required ROOTCRT}"
+STEP_ROOT="${STEP_ROOT:?ERROR: required STEP_ROOT}"
 
 STEP_INIT_NAME="${STEP_INIT_NAME:-}"
+
+STEP_RENEW_PERIOD=${STEP_RENEW_PERIOD:-1m}
 
 function update_root () {
 
@@ -91,5 +93,9 @@ function init () {
 init && \
     printf "%s\n" "Step CA initialized" || \
     printf "%s\n" "Error initializing Step CA"
+
+set -- "${@}" \ 
+    --renew-period "${STEP_RENEW_PERIOD}" \
+    "${SITECRT}" "${SITEKEY}"
 
 exec "${@}"
