@@ -1,1 +1,1 @@
-docker-compose/net-external.yaml
+docker-compose/net-bridge.yaml
