@@ -94,7 +94,7 @@ init && \
     printf "%s\n" "Step CA initialized" || \
     printf "%s\n" "Error initializing Step CA"
 
-set -- "${@}" \ 
+set -- ${@} \
     --renew-period "${STEP_RENEW_PERIOD}" \
     "${SITECRT}" "${SITEKEY}"
 
