@@ -5,3 +5,5 @@
 .env.*.local
 
 /.ssh
+/compose.yaml
+/net.yaml

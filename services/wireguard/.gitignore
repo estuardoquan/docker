@@ -4,3 +4,5 @@
 .env.local
 .env.*.local
 
+/compose.yaml
+/net.yaml
