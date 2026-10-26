@@ -1,7 +1,12 @@
 networks:
     local:
         driver: bridge
+        driver_opts:
+            com.docker.network.driver.mtu: 1450
 services:
     server:
+        ports: 
+            - 80:80
+            - 443:443
         networks:
             local: {}

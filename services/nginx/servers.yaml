@@ -1,12 +1,15 @@
 - server:
       port: 443
       domain:
-          subject: pihole.pi.local
-      https: /var/local/step
+          subject: meta.sglobalgoods.com
+      https:
+          path: /etc/letsencrypt/live/sglobalgoods.com
+          crt: fullchain.pem
+          key: privkey.pem
       log: /var/log/nginx
       locations:
           - type: proxy_pass
-            value: https://pihole
+            value: https://alpine-352.public
             include: /etc/nginx/includes/default.proxy.conf
       redirect: 80
 

@@ -5,6 +5,8 @@ services:
     ca:
         networks:
             local: {}
+        ports:
+            - 5739:5739
     crt:
         networks:
             local: {}

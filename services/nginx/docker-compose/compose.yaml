@@ -1,9 +1,14 @@
+volumes:
+    crt:
+      external: true
+      name: letsencrypt_certbot
 services:
     server:
         extends:
             file: $TEMPLATE_NGINX_SERVER
             service: server
         volumes:
+            - crt:/etc/letsencrypt:ro
             - ./servers.yaml:/etc/nginx/yaml/servers.yaml
         restart: unless-stopped
 
