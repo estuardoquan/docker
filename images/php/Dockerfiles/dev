@@ -1,10 +1,11 @@
-FROM dqio/php:latest
+FROM estuardoquan/phpfpm:alpine
 
-ADD ./tmp/roots.pem /usr/local/share/ca-certificates/roots.pem
+ARG CA_ROOT=https://ca.local/roots.pem
 
 USER root
 
-RUN update-ca-certificates
+RUN curl -k $CA_ROOT > /usr/local/share/ca-certificates/roots.pem && \ 
+    update-ca-certificates
 
 USER laravel
 
